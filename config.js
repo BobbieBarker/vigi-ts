@@ -2,19 +2,19 @@ System.config({
   "baseURL": "/",
   "defaultJSExtensions": true,
   "transpiler": "typescript",
-  "paths": {
-      "github:*": "jspm_packages/github/*",
-      "npm:*": "jspm_packages/npm/*",
-      "app": "src"
-    },
-  "typescriptOptions":{
-    "module":"commonjs",
+  "typescriptOptions": {
+    "module": "commonjs",
     "emitDecoratorMetadata": true
+  },
+  "paths": {
+    "github:*": "jspm_packages/github/*",
+    "npm:*": "jspm_packages/npm/*",
+    "app": "src"
   },
   "packages": {
     "app": {
       "main": "main.ts",
-      "defaultExtension": "ts" //or "ts" for typescript
+      "defaultExtension": "ts"
     }
   }
 });
