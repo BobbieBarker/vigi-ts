@@ -1,0 +1,1 @@
+export const supaSteve = 'steve rox'
