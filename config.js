@@ -11,6 +11,7 @@ System.config({
     "npm:*": "jspm_packages/npm/*",
     "app": "src"
   },
+  "trace": true,
   "packages": {
     "app": {
       "main": "main.ts",
@@ -21,7 +22,14 @@ System.config({
 
 System.config({
   "map": {
-    "typescript": "github:mhegazy/typescript@v1.5-beta2"
+    "rx": "npm:rx@2.5.3",
+    "typescript": "github:mhegazy/typescript@v1.5-beta2",
+    "github:jspm/nodelibs-process@0.1.1": {
+      "process": "npm:process@0.10.1"
+    },
+    "npm:rx@2.5.3": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    }
   }
 });
 

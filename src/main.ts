@@ -1,3 +1,9 @@
+export let __hotReload = true;
+
+
+import {RequestProvider} from './request';
+
+
 export class Vigi {
 	constructor(){}
 	
@@ -10,11 +16,21 @@ export class Vigi {
 	set baseUrl(url: string){
 		this._url = url;
 	}
+	
+	demo(){
+		let demoPath = new Request(`${this.baseUrl}/posts`, {method: 'GET'})
+		window.fetch(demoPath).then((data) => data.json().then((rest) => {
+			console.log(rest)
+		}));
+	}
 }
 
 
 let vigi = new Vigi();
 
-vigi.baseUrl = 'stevesauce'
+vigi.baseUrl = 'http://jsonplaceholder.typicode.com';
 
-console.log(vigi.baseUrl)
+console.log(vigi.baseUrl);
+
+vigi.demo()
+

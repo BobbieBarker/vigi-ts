@@ -1,6 +1,9 @@
 {
   "jspm": {
     "directories": {},
+    "dependencies": {
+      "rx": "npm:rx@^2.5.3"
+    },
     "devDependencies": {
       "typescript": "github:mhegazy/typescript@v1.5-beta2"
     }
