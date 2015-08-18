@@ -13,6 +13,10 @@ let test = vigi();
 
 //test.baseUrl = 'http://jsonplaceholder.typicode.com';
 
+var dumby = new Request('http://jsonplaceholder.typicode.com', {method: 'GET'})
+console.log(dumby)
+
+
 console.log(test);
 
 

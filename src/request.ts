@@ -1,15 +1,24 @@
 export let __hotReload = true;
 
+interface __Request {
+	url: string,
+	method: string,
+	bodyUsed?: boolean,
+	context?: string,
+	headers?: any,
+	mode?: string,
+	referrer?: string,	
+}  
 
-export class RequestProvider {
+export class RequestProvider implements __Request {
 	constructor(){
-		this._request = {};
+//		this._request = {};
 	};
 	
-	private _request: any;
+	private _request: __Request;
 	
 	
-	get Request(): any {
+	get Resource(): any {
 		return new Request(this._request.url, this._request);
 	}
 	
