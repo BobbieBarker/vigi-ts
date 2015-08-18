@@ -1,36 +1,18 @@
 export let __hotReload = true;
 
+import {Vigi} from './vigi';
+import {HTTP} from './http';
 
-import {RequestProvider} from './request';
+ export const vigi = () => {
+   let http = new HTTP();
+   return new Vigi(http);
+};
 
-
-export class Vigi {
-	constructor(){}
-	
-	private _url: string;
-	
-	get baseUrl(): string {
-		return this._url
-	}
-	
-	set baseUrl(url: string){
-		this._url = url;
-	}
-	
-	demo(){
-		let demoPath = new Request(`${this.baseUrl}/posts`, {method: 'GET'})
-		window.fetch(demoPath).then((data) => data.json().then((rest) => {
-			console.log(rest)
-		}));
-	}
-}
+let test = vigi();
 
 
-let vigi = new Vigi();
+//test.baseUrl = 'http://jsonplaceholder.typicode.com';
 
-vigi.baseUrl = 'http://jsonplaceholder.typicode.com';
+console.log(test);
 
-console.log(vigi.baseUrl);
-
-vigi.demo()
 
