@@ -1,24 +1,42 @@
 export let __hotReload = true;
-
-
-import {RequestProvider} from './request';
-
+import {_fetch} from './request';
+import {HTTP} from './http';
 
 export class Vigi {
-	constructor(private http){
-		this.http = http;
+	constructor(){
+		
 	}
-	
-	
-	private _url: string;
+		
+	private _baseUrl: string;
 	
 	get baseUrl(): string {
-		return this._url
+		return this._baseUrl
 	}
 	
 	set baseUrl(url: string){
-		this._url = url;
+		this._baseUrl = url;
+	}
+	
+	one(path: string) {
+		let resource = `${this._baseUrl}/${path}`;
+		let blah = new HTTP(resource, _fetch)
+		return blah
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
