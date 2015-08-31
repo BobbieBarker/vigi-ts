@@ -21,6 +21,7 @@ System.config({
   },
 
   map: {
+    "es6-shim": "github:es-shims/es6-shim@0.33.1",
     "rx": "npm:rx@2.5.3",
     "typescript": "npm:typescript@1.5.3",
     "github:jspm/nodelibs-buffer@0.1.0": {

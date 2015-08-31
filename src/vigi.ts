@@ -19,8 +19,7 @@ export class Vigi {
 	
 	one(path: string) {
 		let resource = `${this._baseUrl}/${path}`;
-		let blah = new HTTP(resource, _fetch)
-		return blah
+		return new HTTP(resource, _fetch)	
 	}
 	
 }

@@ -2,6 +2,7 @@
   "jspm": {
     "directories": {},
     "dependencies": {
+      "es6-shim": "github:es-shims/es6-shim@^0.33.1",
       "rx": "npm:rx@^2.5.3"
     },
     "devDependencies": {
