@@ -16,9 +16,9 @@ console.log(test)
 
 test.one('posts').get().then(data => {
   console.log(data)
-  /*data[1].put({title: 'steve', body: 'supa steve?'}).then(data => {
+  data[1].put({title: 'steve', body: 'supa steve?'}).then(data => {
    // console.log('put?', data)
-  })*/
+  })
   data[0].get('comments').then(data => {
     console.log('chained!', data)
   })

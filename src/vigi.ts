@@ -1,8 +1,4 @@
-interface HttpOptions {
-	METHOD: string
-}
-
-import {_fetch} from './request';
+import {_makeRequest} from './request';
 
 export class Vigi  {
   private parent: string;
@@ -13,27 +9,23 @@ export class Vigi  {
   public one;
   public all;
 
-	constructor(baseUrl: string){
+	constructor(baseUrl: string) {
     this.parent = baseUrl;
     
-		this.get = (queryParams?: string, HttpOptions?: string) => {
-			return _fetch(this.makeRequest(this, queryParams, 'GET')).then(data => {
-				return this.enhance(data);
-			});
+		this.get = (queryParams?: string) => {
+      return _makeRequest(this, 'GET', queryParams);
 		}
 		
-		this.post = () => {
-			
+		this.post = (payload: any, queryParams: string) => {
+		  return _makeRequest(this, 'POST', queryParams);	
+		}
+		//put shouldn't accept a payload, put should act on the object
+		this.put = (payload: any, queryParams?: string) => {
+      return _makeRequest(this, 'PUT', queryParams, payload);
 		}
 		
-		this.put = (payload: any, queryParams: string) => {
-			return _fetch(this.makeRequest(this, queryParams, 'PUT', payload)).then(data => {
-				return this.enhance(data);
-			});
-		}
-		
-		this.remove = () => {
-			
+		this.remove = (queryParams) => {
+			return _makeRequest(this, 'DELETE', queryParams);
 		}
     
     this.one = (path: string, id: number) => {
@@ -47,26 +39,5 @@ export class Vigi  {
       return this;
     }
 	}// end constructor
-  
-  //refactor out into function
-	makeRequest(instance: HTTP, params?: string,  method?: string, payload?: any) {
-    
-    let resource = instance.parent;
-    
-		if(instance.hasOwnProperty('id')) {
-			resource = `${resource}/${instance.id}`;
-		}
-    
-		resource = params ? `${resource}/${params}` : resource;
-		return new Request(resource, {method: method, body: JSON.stringify(payload)});
-	}
-	 
-  //refactor out into function
-	enhance(data) {
-		if(Array.isArray(data)){
-			return data.map(item => Object.assign(this, item));
-		}
-		return Object.assign(this, data);
-	}
-}
+}// end class
 
