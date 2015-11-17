@@ -1,7 +1,7 @@
-import {_makeRequest} from './request';
+import {_getResource} from './request';
 
 export class Vigi  {
-  private parent: string;
+  private resource: string;
 	public get;
 	public post;
 	public remove;
@@ -10,32 +10,32 @@ export class Vigi  {
   public all;
 
 	constructor(baseUrl: string) {
-    this.parent = baseUrl;
+    this.resource = baseUrl;
     
-		this.get = (queryParams?: string) => {
-      return _makeRequest(this, 'GET', queryParams);
+		this.get = function(queryParams?: string) {
+      return _getResource(this, 'get', queryParams);
 		}
 		
-		this.post = (payload: any, queryParams: string) => {
-		  return _makeRequest(this, 'POST', queryParams);	
+		this.post = function(payload: any, queryParams: string) {
+		  return _getResource(this, 'post', queryParams, payload);	
 		}
-		//put shouldn't accept a payload, put should act on the object
-		this.put = (payload: any, queryParams?: string) => {
-      return _makeRequest(this, 'PUT', queryParams, payload);
+
+		this.put = function(queryParams?: string) {
+      return _getResource(this, 'put', queryParams, this);
 		}
 		
-		this.remove = (queryParams) => {
-			return _makeRequest(this, 'DELETE', queryParams);
+		this.remove = function(queryParams) {
+			return _getResource(this, 'delete', queryParams);
 		}
     
-    this.one = (path: string, id: number) => {
-      this.parent = `${this.parent}/${path}`;
-      this.parent = id ? `${this.parent}/${id}` : this.parent;
+    this.one = function(path: string, id: number) {
+      this.resource = `${this.resource}/${path}`;
+      this.resource = id ? `${this.resource}/${id}` : this.resource;
       return this;
     }
     
-    this.all = (path: string) => {
-      this.parent = `${this.parent}/${path}`;
+    this.all = function(path: string) {
+      this.resource = `${this.resource}/${path}`;
       return this;
     }
 	}// end constructor

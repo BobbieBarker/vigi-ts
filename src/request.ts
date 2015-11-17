@@ -7,24 +7,24 @@ const _fetch = (request: any) => {
 };
 
 const _createRequest = (instance: any, method: string, params?: string, payload?: any) => {
-  let resource = instance.parent;
-		
+  let resource = instance.resource;
+
   if(instance.hasOwnProperty('id')) {
     resource = `${resource}/${instance.id}`;
 	}
+
 	resource = params ? `${resource}/${params}` : resource;
-	return new Request(resource, {method: method, body: JSON.stringify(payload)});
+  return new Request(resource, {method: method, body: JSON.stringify(payload)});
 }
 	 
-  //refactor out into function
 const	_enhance = (instance, data) => {
   if(Array.isArray(data)){
-		return data.map(item => Object.assign(instance, item));
+    return data.map(item => Object.assign({}, instance, item));
 	}
-	return Object.assign(instance, data);
+	return Object.assign({}, instance, data);
 }
   
-export const _makeRequest = (instance: any, method: string, queryParams?: string, payload?: any) => {
+export const _getResource = (instance: any, method: string, queryParams?: string, payload?: any) => {
   return _fetch(_createRequest(instance, method, queryParams, payload)).then(data => {
     return _enhance(instance, data);
   });
