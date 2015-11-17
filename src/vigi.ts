@@ -9,6 +9,11 @@ export class Vigi {
   public one;
   public all;
   
+  /**
+   * API methods are defined inside the constructor to deliberately make them a property of the class
+   * and not a property of the class prototype. This enables the use of Object.assign in the _enhance
+   * function to enrich the API responses with the class methods. 
+   */
   constructor(baseUrl: string) {
     this.resource = baseUrl;
     
