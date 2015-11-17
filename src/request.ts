@@ -1,4 +1,5 @@
 export let __hotReload = true;
+
 const _fetch = (request: any) => {
   return  window.fetch(request).then((data) => data.json().then((rest) => {
     return rest;
@@ -24,7 +25,5 @@ const	_enhance = (instance, data) => {
 }
 
 export const _getResource = (instance: any, method: string, queryParams?: string, payload?: any) => {
-  return _fetch(_createRequest(instance, method, queryParams, payload)).then(data => {
-    return _enhance(instance, data);
-  });
+  return _fetch(_createRequest(instance, method, queryParams, payload)).then(data => _enhance(instance, data));
 }
