@@ -1,11 +1,11 @@
 import {_getResource} from './request';
 
-export class Vigi  {
+export class Vigi {
   private resource: string;
-	public get;
-	public post;
-	public remove;
-	public put;
+  public get;
+  public post;
+  public remove;
+  public put;
   public one;
   public all;
 
